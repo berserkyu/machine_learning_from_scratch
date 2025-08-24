@@ -74,7 +74,7 @@ class LinearRegression:
                             )
         # random init weight & intercepts
         self._weights = np.random.rand(M).tolist()
-        self._intercept = np.random.rand(M).tolist()
+        self._intercept = np.random.rand() 
         Y_hat = self.predict(X)
 
         # prepare for gradient descent
@@ -90,9 +90,7 @@ class LinearRegression:
             
             # update parameter value
             self._weights = [ w - self._learning_rate * weights_gradient for w in self._weights ]
-            self._intercept = [ b - self._learning_rate * intercepts_gradient for b in self._intercept ]
-            
-
+            self._intercept -= self._learning_rate * intercepts_gradient 
             
             # calculate loss
             Y_hat = self.predict(X)
@@ -122,7 +120,7 @@ class LinearRegression:
     
     def predict(self, X: pd.DataFrame):
 
-        results_by_dimension = X.dot(self._weights) + sum(self._intercept)
+        results_by_dimension = X.dot(self._weights) + self._intercept
         return results_by_dimension
     
     def explain(self):

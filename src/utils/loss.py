@@ -27,7 +27,7 @@ class Loss:
         N = len(Y)
         M = len(weights)
 
-        y_hat_partial = np.dot(X, weights) + sum(intercepts)
+        y_hat_partial = np.dot(X, weights) + intercepts
         weights_gradient = np.dot(y_hat_partial - Y, X).sum() /N
         intercepts_gradient = (y_hat_partial - Y).sum() / N
 
