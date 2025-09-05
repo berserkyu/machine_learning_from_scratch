@@ -1,6 +1,6 @@
 import math
 import numpy as np
-from .transformations import sigmoid
+from src.utils.transformations import sigmoid
 
 class Loss:
     

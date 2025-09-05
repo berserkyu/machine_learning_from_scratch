@@ -22,7 +22,11 @@ class LinearRegression(Model):
 
     def __init__(self, params={}):
         super().__init__()
-        self.set_params(params)
+        if params:
+            self.set_params(params)
+        else:
+            self.set_params(self._default_params)
+            
         self._loss_calculator = Loss('mse')
         return
 
