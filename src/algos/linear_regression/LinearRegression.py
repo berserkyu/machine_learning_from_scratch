@@ -2,7 +2,7 @@ import numpy as np
 import math
 import pandas as pd
 from src.utils.loss import Loss
-from model import Model
+from src.algos.model import Model
 
 class LinearRegression(Model):  
 
@@ -22,7 +22,7 @@ class LinearRegression(Model):
 
     def __init__(self, params={}):
         super().__init__()
-        self.__set_params(params)
+        self.set_params(params)
         self._loss_calculator = Loss('mse')
         return
 
@@ -30,7 +30,7 @@ class LinearRegression(Model):
         ### Preparation ###
         M = X.shape[1]  # number of features
         if params:
-            self.__set_params(params)
+            self.set_params(params)
         # random init weight & intercepts
         self._weights = np.random.rand(M).tolist()
         self._intercept = np.random.rand() 
@@ -72,6 +72,9 @@ class LinearRegression(Model):
         print(f"no improvement count: {no_improvement_count}\n")
 
         return self._weights, self._intercept, loss_history
+    
+    def set_params(self, params):
+        return super().set_params(params)
     
     def predict(self, X: pd.DataFrame):
         results_by_dimension = X.dot(self._weights) + self._intercept

@@ -1,5 +1,5 @@
 from abc import abstractmethod
-from constants import params_constraints
+from src.algos.constants import params_constraints
 
 class Model:
     def __init__(self, init_params={}):
